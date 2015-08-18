@@ -19,4 +19,4 @@ TCP/IP Assignment with Dr Anang
 10. A Push or A Shove
 
 <h2>Work Distribution</h2>
-All workd distribution are equally divided among members
+All work distribution are equally divided among members
