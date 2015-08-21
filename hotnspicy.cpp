@@ -1,17 +1,30 @@
 #include <stdio.h>
-int main (){
-FILE *fp;
+#include <string.h>
 
-char returnData[64];
+int main(int argc, const char * argv[])
+{
+    FILE *fp;
 
-	fp = popen("/sbin/ifconfig eth0", "r");
+    char returnData[64];
 
-	while (fgets(returnData, 64, fp) != NULL)
-		{
-				printf("%s", returnData);
-		}
-		
-	pclose(fp);
+    fp = popen("/sbin/ifconfig eth0", "r");
 
-//to get ip address on linux
+    while (fgets(returnData, 63, fp) != NULL)
+    {
+        if (returnData[0] == '\n') {
+            continue;
+        }
+
+        char no1[60], no2[60];
+        strcpy(no1, strtok(returnData, " "));
+    if (strcmp("inet", no1) != 0) {
+            continue;
+        }
+
+        strcpy(no2, strtok(NULL, " "));
+        printf("%s %s\n", no1, no2);
+
+    }
+
+    return 0;
 }
